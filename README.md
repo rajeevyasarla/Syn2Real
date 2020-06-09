@@ -32,16 +32,24 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
 |  |  |  |--image1.png  (clean image)
 |  |  |--dataset_filename.txt
 
-## To test UMSN:
+## To test Syn2Real:
 1. mention test dataset text file in the line 57 of test.py, for example
+    
     val_filename = 'SIRR_test.txt'
+    
 2. Run the following command
+    
     python test.py -category derain -exp_name DDN_SIRR_withGP
 
-## To train UMSN:
+## To train Syn2Real:
 1. mention the labeled, unlabeled, and validation dataset in lines 119-121 of train.py, for example
+    
     labeled_name = 'DDN_100_split1.txt'
+    
     unlabeled_name = 'real_input_split1.txt'
+    
     val_filename = 'SIRR_test.txt'
+    
 2. Run the following command
+    
     python train.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.015 -epoch_start 0
