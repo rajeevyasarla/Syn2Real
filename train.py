@@ -118,7 +118,7 @@ print("Total_params: {}".format(pytorch_total_params))
 # --- Load training data and validation/test data --- #
 labeled_name = 'DDN_100_split1.txt'
 unlabeled_name = 'real_input_split1.txt'
-val_filename = 'val_list_SIRR.txt'
+val_filename = 'SIRR_test.txt'
 # --- Load training data and validation/test data --- #
 unlbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,unlabeled_name), batch_size=train_batch_size, shuffle=True, num_workers=8)
 lbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,labeled_name), batch_size=train_batch_size, shuffle=True, num_workers=8)
