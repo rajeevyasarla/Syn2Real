@@ -23,7 +23,9 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
 ## Dataset structure
 1. download the rain datasets and arrange the rainy images and clean images in the following order
 2. Save the image names into text file (dataset_filename.txt)
+
 .
+
 |--data
 
 |  |--derain
