@@ -25,11 +25,17 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
 2. Save the image names into text file (dataset_filename.txt)
 .
 |--data
+
 |  |--derain
+
 |  |  |--rain
+
 |  |  |  |--image1.png  (rainy image)
+
 |  |  |--norain
+
 |  |  |  |--image1.png  (clean image)
+
 |  |  |--dataset_filename.txt
 
 ## To test Syn2Real:
