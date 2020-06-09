@@ -1,9 +1,6 @@
 # Syn2Real
 Syn2Real Transfer Learning for Image Deraining using Gaussian Processes
 
-# UMSN-Face-Deblurring
-Deblurring Face Images using Uncertainty Guided Multi-Stream Semantic Networks
-
 [Rajeev Yasarla*](https://sites.google.com/view/rajeevyasarla/home), [Vishwanath A. Sindagi*](https://www.vishwanathsindagi.com/), [Vishal M. Patel](https://engineering.jhu.edu/ece/faculty/vishal-m-patel/)
 
 [Paper Link](http://openaccess.thecvf.com/content_CVPR_2020/papers/Yasarla_Syn2Real_Transfer_Learning_for_Image_Deraining_Using_Gaussian_Processes_CVPR_2020_paper.pdf)(CVPR '20)
