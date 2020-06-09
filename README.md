@@ -24,21 +24,20 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
 1. download the rain datasets and arrange the rainy images and clean images in the following order
 2. Save the image names into text file (dataset_filename.txt)
 
-.
-
-|--data
-
-|  |--derain
-
-|  |  |--rain
-
-|  |  |  |--image1.png  (rainy image)
-
-|  |  |--norain
-
-|  |  |  |--image1.png  (clean image)
-
-|  |  |--dataset_filename.txt
+   .
+    ├── data 
+    |   ├── train # Training    
+    |   |   ├── derain         
+    |   |   |   ├── <dataset_name>              
+    |   |   |   |   ├── rain              # rain images 
+    |   |   |   |   └── norain            # clean images
+    |   |   └── dataset_filename.txt
+    |   └── test  # Testing
+    |   |   ├── derain         
+    |   |   |   ├── <dataset_name>              
+    |   |   |   |   ├── rain              # rain images 
+    |   |   |   |   └── norain            # clean images
+    |   |   └── dataset_filename.txt
 
 ## To test Syn2Real:
 1. mention test dataset text file in the line 57 of test.py, for example
