@@ -200,7 +200,7 @@ for epoch in range(epoch_start,num_epochs):
 #-------------------------------------------------------------------------------------------------------------
     # Unlabeled Phase
     
-    if lambgp!=0:
+    if lambgp!=0 and epoch>10:
         gp_struct.gen_featmaps_unlbl(unlbl_train_data_loader,net,device)
         for batch_id, train_data in enumerate(unlbl_train_data_loader):
 
