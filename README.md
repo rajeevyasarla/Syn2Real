@@ -31,13 +31,13 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
     |   |   |   ├── <dataset_name>   
     |   |   |   |   ├── rain              # rain images 
     |   |   |   |   └── norain            # clean images
-    |   |   └── dataset_filename.txt
+    |   |   |   └── dataset_filename.txt
     |   └── test  # Testing
     |   |   ├── derain         
     |   |   |   ├── <dataset_name>          
     |   |   |   |   ├── rain              # rain images 
     |   |   |   |   └── norain            # clean images
-    |   |   └── dataset_filename.txt
+    |   |   |   └── dataset_filename.txt
 ```
 
 ## To test Syn2Real:
