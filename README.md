@@ -5,6 +5,9 @@ Syn2Real Transfer Learning for Image Deraining using Gaussian Processes
 
 [Paper Link](http://openaccess.thecvf.com/content_CVPR_2020/papers/Yasarla_Syn2Real_Transfer_Learning_for_Image_Deraining_Using_Gaussian_Processes_CVPR_2020_paper.pdf)(CVPR '20)
 
+[Oral video Link]
+(https://www.youtube.com/watch?v=iYuv4Cqgq4k)
+
     @InProceedings{Yasarla_2020_CVPR,
     author = {Yasarla, Rajeev and Sindagi, Vishwanath A. and Patel, Vishal M.},
     title = {Syn2Real Transfer Learning for Image Deraining Using Gaussian Processes},
