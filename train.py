@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from train_data import TrainData
 from val_data import ValData
-from model import DeRain_v1, DeRain_v2
+from model import DeRain_v2
 from GP import GPStruct
 from utils import to_psnr, print_log, validation, adjust_learning_rate
 from torchvision.models import vgg16
@@ -30,6 +30,8 @@ parser.add_argument('-epoch_start', help='Starting epoch number of the training'
 parser.add_argument('-lambda_loss', help='Set the lambda in loss function', default=0.04, type=float)
 parser.add_argument('-val_batch_size', help='Set the validation/test batch size', default=1, type=int)
 parser.add_argument('-category', help='Set image category (derain or dehaze?)', default='derain', type=str)
+parser.add_argument('-version', help='Set the GP model (version1 or version2?)', default='version1', type=str)
+parser.add_argument('-kernel_type', help='Set the GP model (Linear or Squared_exponential or Rational_quadratic?)', default='Linear', type=str)
 parser.add_argument('-exp_name', help='directory for saving the networks of the experiment', type=str)
 parser.add_argument('-lambda_GP', help='Set the lambda_GP for gploss in loss function', default=0.0015, type=float)
 parser.add_argument('-seed', help='set random seed', default=19, type=int)
@@ -42,6 +44,8 @@ epoch_start = args.epoch_start
 lambda_loss = args.lambda_loss
 val_batch_size = args.val_batch_size
 category = args.category
+version = args.version # version1 is GP model used in conference paper and version2 is GP model (feature level GP) used in journal paper
+kernel_type = args.kernel_type
 exp_name = args.exp_name
 lambgp = args.lambda_GP
 use_GP_inlblphase = False # indication whether or not to use GP during labeled phase
@@ -116,9 +120,9 @@ print("Total_params: {}".format(pytorch_total_params))
 
 
 # --- Load training data and validation/test data --- #
-labeled_name = 'DDN_100_split1.txt'
-unlabeled_name = 'real_input_split1.txt'
-val_filename = 'SIRR_test.txt'
+labeled_name = 'DIDMDN.txt'
+unlabeled_name = 'JORDER_200L.txt'
+val_filename = 'JORDER_200L.txt'
 # --- Load training data and validation/test data --- #
 unlbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,unlabeled_name), batch_size=train_batch_size, shuffle=True, num_workers=8)
 lbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,labeled_name), batch_size=train_batch_size, shuffle=True, num_workers=8)
@@ -138,7 +142,7 @@ old_val_psnr, old_val_ssim = validation(net, val_data_loader, device, category, 
 print('old_val_psnr: {0:.2f}, old_val_ssim: {1:.4f}'.format(old_val_psnr, old_val_ssim))
 net.train()
 #intializing GPStruct
-gp_struct = GPStruct(num_labeled,num_unlabeled,train_batch_size)
+gp_struct = GPStruct(num_labeled,num_unlabeled,train_batch_size,version,kernel_type)
 
 for epoch in range(epoch_start,num_epochs):
     psnr_list = []
@@ -188,7 +192,7 @@ for epoch in range(epoch_start,num_epochs):
 
     val_psnr, val_ssim = validation(net, val_data_loader, device, category, exp_name)
     one_epoch_time = time.time() - start_time
-    print_log(epoch+1, num_epochs, one_epoch_time, train_psnr, val_psnr, val_ssim, category)
+    print_log(epoch+1, num_epochs, one_epoch_time, train_psnr, val_psnr, val_ssim, category, exp_name)
 
     # --- update the network weight --- #
     if val_psnr >= old_val_psnr:
@@ -200,7 +204,7 @@ for epoch in range(epoch_start,num_epochs):
 #-------------------------------------------------------------------------------------------------------------
     # Unlabeled Phase
     
-    if lambgp!=0 and epoch>10:
+    if lambgp!=0:
         gp_struct.gen_featmaps_unlbl(unlbl_train_data_loader,net,device)
         for batch_id, train_data in enumerate(unlbl_train_data_loader):
 
@@ -215,9 +219,10 @@ for epoch in range(epoch_start,num_epochs):
             net.train()
             pred_image,zy_in = net(input_image)
             gp_loss = 0
+            
             if lambgp!=0:
                 gp_loss = gp_struct.compute_gploss(zy_in, imgid,batch_id,0)
-
+            
             loss = lambgp*gp_loss
             if loss!=0:
                 loss.backward()
@@ -240,7 +245,7 @@ for epoch in range(epoch_start,num_epochs):
 
         val_psnr, val_ssim = validation(net, val_data_loader, device, category, exp_name)
         one_epoch_time = time.time() - start_time
-        print_log(epoch+1, num_epochs, one_epoch_time, train_psnr, val_psnr, val_ssim, category)
+        print_log(epoch+1, num_epochs, one_epoch_time, train_psnr, val_psnr, val_ssim, category, exp_name)
 
         # --- update the network weight --- #
         if val_psnr >= old_val_psnr:

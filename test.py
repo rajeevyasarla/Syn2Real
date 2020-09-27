@@ -6,7 +6,7 @@ import argparse
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from val_data import ValData
-from model import DeRain_v1, DeRain_v2
+from model import  DeRain_v1, DeRain_v2
 from utils import validation
 import os
 import numpy as np
@@ -54,7 +54,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 # --- Validation data loader --- #
-val_filename = 'SIRR_test.txt'
+val_filename = 'val_list_SIRR.txt'
 val_data_loader = DataLoader(ValData(val_data_dir,val_filename), batch_size=val_batch_size, shuffle=False, num_workers=24)
 
 
