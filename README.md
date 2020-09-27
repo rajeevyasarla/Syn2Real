@@ -16,6 +16,10 @@ Syn2Real Transfer Learning for Image Deraining using Gaussian Processes
     }
 We propose a Gaussian Process-based semi-supervised learning framework which enables the network in learning to derain using synthetic dataset while generalizing better using  unlabeled real-world images. Through extensive experiments and ablations on several challenging datasets (such as Rain800, Rain200H and DDN-SIRR), we show that the proposed method, when trained on limited labeled data, achieves on-par performance with fully-labeled training. Additionally, we demonstrate that using unlabeled real-world images in the proposed GP-based framework results in superior performance as compared to existing methods.
 
+## Journal extension:
+Semi-Supervised Image Deraining using Gaussian Processes
+[Paper Link](https://drive.google.com/file/d/1PUeJweQnCAaM7PhF8NTZEAEUfVcks_pf/view?usp=sharing)
+
 ## Prerequisites:
 1. Linux
 2. Python 2 or 3
@@ -58,7 +62,29 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
     unlabeled_name = 'real_input_split1.txt'
     val_filename = 'SIRR_test.txt'
 ``` 
-2. Run the following command
+2. Run the following command to train the base network without Gaussian processes
 ```
-    python train.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.015 -epoch_start 0
+    python train.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withoutGP  -lambda_GP 0.00 -epoch_start 0
+```
+3. Run the following command to train Syn2Real (CVPR'20) model 
+```
+    python train.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.0015 -epoch_start 0 -version version1
+```
+4. Run the following command to train Syn2Real++ (journal submission GP modellig at feature map level) 
+```
+    python train.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.0015 -epoch_start 0 -version version2
+    
+```
+## Cross-domain experiments and Gaussian kernels
+cross domain experiments are performed using DIDMDN dataset as source dataset, and other datasets like Rain800, JORDER_200L, DDN as target datasets.
+```
+----------------------------------------------------
+Source datasets   | Target datasets                | 
+----------------------------------------------------
+DIDMDN            | Rain800, JORDER_200L, DDN      |
+----------------------------------------------------
+```
+Gaussian processes can be modelled using different kernels like Linear or Squared_exponential or Rational_quadratic. the updated code provides an option to the kernel type
+```
+-kernel_type <Linear or Squared_exponential or Rational_quadratic>
 ```
