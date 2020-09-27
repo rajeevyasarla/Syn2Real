@@ -85,7 +85,7 @@ Source datasets   | Target datasets                |
 DIDMDN            | Rain800, JORDER_200L, DDN      |
 ----------------------------------------------------
 ```
-Gaussian processes can be modelled using different kernels like Linear or Squared_exponential or Rational_quadratic. the updated code provides an option to the kernel type
+Gaussian processes can be modelled using different kernels like Linear or Squared_exponential or Rational_quadratic. the updated code provides an option to choose the kernel type
 ```
 -kernel_type <Linear or Squared_exponential or Rational_quadratic>
 ```
