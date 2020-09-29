@@ -19,7 +19,7 @@ We propose a Gaussian Process-based semi-supervised learning framework which ena
 ## Journal extension:
 Semi-Supervised Image Deraining using Gaussian Processes
 
-[Paper Link](https://drive.google.com/file/d/1PUeJweQnCAaM7PhF8NTZEAEUfVcks_pf/view?usp=sharing)
+[Paper Link](https://arxiv.org/pdf/2009.13075.pdf)
 
 ## Prerequisites:
 1. Linux
