@@ -1,5 +1,5 @@
-# Syn2Real
-Syn2Real Transfer Learning for Image Deraining using Gaussian Processes[![HitCount](http://hits.dwyl.com/rajeevyasarla/rajeevyasarla/Syn2Real.svg)](http://hits.dwyl.com/rajeevyasarla/rajeevyasarla/Syn2Real)
+# Syn2Real [![HitCount](http://hits.dwyl.com/rajeevyasarla/rajeevyasarla/Syn2Real.svg)](http://hits.dwyl.com/rajeevyasarla/rajeevyasarla/Syn2Real)
+Syn2Real Transfer Learning for Image Deraining using Gaussian Processes
 
 [Rajeev Yasarla*](https://sites.google.com/view/rajeevyasarla/home), [Vishwanath A. Sindagi*](https://www.vishwanathsindagi.com/), [Vishal M. Patel](https://engineering.jhu.edu/ece/faculty/vishal-m-patel/)
 
