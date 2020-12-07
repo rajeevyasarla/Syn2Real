@@ -135,7 +135,7 @@ class GPStruct(object):
             
             net.eval()
             pred_image,zy_in = net(input_im)
-            tensor_mat = torch.squeeze(zy_in.data)
+            tensor_mat = zy_in.data#torch.squeeze(zy_in.data)
             # saving latent space feature vectors 
             for i in range(tensor_mat.shape[0]):
                 if imgid[i] not in self.dict_unlbl.keys():
@@ -163,7 +163,7 @@ class GPStruct(object):
             
             net.eval()
             pred_image,zy_in = net(input_im)
-            tensor_mat = torch.squeeze(zy_in.data)
+            tensor_mat = zy_in.data#torch.squeeze(zy_in.data)
             # saving latent space feature vectors
             for i in range(tensor_mat.shape[0]):
                 if imgid[i] not in self.dict_lbl.keys():
