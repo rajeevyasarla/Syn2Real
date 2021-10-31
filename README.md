@@ -90,10 +90,17 @@ Gaussian processes can be modelled using different kernels like Linear or Square
 -kernel_type <Linear or Squared_exponential or Rational_quadratic>
 ```
 ## Fast version of GP
+
+use GP_new_fast.py file for faster version of GP.
 ```
-use GP_new_fast.py file for fast version of GP.
-This supports only "-version version1"
 To use this GP_new_fast.py :
     comment line 14 in train.py
     and uncomment line 15 in train.py
 ```
+Additionally you can use "train_new_comb.py" instead of "train.py". 
+In "train_new_comb.py" does iterative training of the network, i.e. each iteration contains one labeled train step and one unlabeled train step
+Run the following command to train Syn2Real (CVPR'20) model using  "train_new_comb.py" 
+```
+    python train_new_comb.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.0015 -epoch_start 0 -version version1
+```
+
