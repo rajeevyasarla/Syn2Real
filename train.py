@@ -12,6 +12,7 @@ from train_data import TrainData
 from val_data import ValData
 from model import DeRain_v2
 from GP import GPStruct
+from GP_new_fast import GPStruct
 from utils import to_psnr, print_log, validation, adjust_learning_rate
 from torchvision.models import vgg16
 from perceptual import LossNetwork
