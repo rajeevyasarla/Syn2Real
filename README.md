@@ -89,3 +89,11 @@ Gaussian processes can be modelled using different kernels like Linear or Square
 ```
 -kernel_type <Linear or Squared_exponential or Rational_quadratic>
 ```
+## Fast version GP
+```
+use GP_new_fast.py file for fast version of GP.
+This supports only "-version version1"
+To use this GP_new_fast.py :
+    comment line 14 in train.py
+    and uncomment line 15 in train.py
+```
