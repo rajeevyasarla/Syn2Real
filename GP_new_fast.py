@@ -330,7 +330,7 @@ class GPStruct(object):
             # inv_sigma = torch.linalg.inv(sigma_est)
         for i in range(tensor_mat.shape[0]):
             if self.version == 'version1':
-                loss_unsup = torch.mean((self.loss(tensor_vec[i,:,:,:],mean_pred[i,:,:]))/sigma_est[i,:,:]) + 1.0*self.lambda_var*torch.log(torch.det(sigma_est[i,:,:]))
+                loss_unsup = torch.mean((self.loss(tensor_vec[i,:,:],mean_pred[i,:,:]))/sigma_est[i,:,:]) + 1.0*self.lambda_var*torch.log(torch.det(sigma_est[i,:,:]))
             else :
                 loss_unsup = torch.mean((self.loss(tensor_vec[i,:,:],mean_pred[i,:,:]))/sigma_est[i,:,:]) + 1.0*self.lambda_var*torch.mean(torch.log(torch.abs(sigma_est[i,:,:])))
                 # loss_unsup = torch.mean(torch.matmul((tensor_vec[i,:,:]-mean_pred[i,:,:]).t(),torch.matmul(inv_sigma[i,:,:],(tensor_vec[i,:,:]-mean_pred[i,:,:])))) + 1.0*self.lambda_var*torch.log(torch.det(sigma_est[i,:,:])) 
