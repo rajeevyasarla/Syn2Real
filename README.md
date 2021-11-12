@@ -98,8 +98,10 @@ To use this GP_new_fast.py :
     and uncomment line 15 in train.py
 ```
 Additionally you can use "train_new_comb.py" instead of "train.py". 
-In "train_new_comb.py" does iterative training of the network, i.e. each iteration contains one labeled train step and one unlabeled train step
-Run the following command to train Syn2Real (CVPR'20) model using  "train_new_comb.py" 
+
+In "train_new_comb.py" does iterative training of the network, i.e. each iteration contains one labeled train step and one unlabeled train step.
+
+Run the following command to train Syn2Real (CVPR'20) model using  "train_new_comb.py". 
 ```
     python train_new_comb.py  -train_batch_size 2  -category derain -exp_name DDN_SIRR_withGP  -lambda_GP 0.0015 -epoch_start 0 -version version1
 ```
