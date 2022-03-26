@@ -29,6 +29,8 @@ def to_ssim_skimage(pred_image, gt):
 
     return ssim_list
 
+def to_metrics(pred_image, gt):
+    return to_psnr(pred_image, gt),to_ssim_skimage(pred_image, gt)
 
 def validation(net, val_data_loader, device, category, exp_name, save_tag=False):
     """
