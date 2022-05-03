@@ -229,11 +229,11 @@ class GPStruct(object):
         print("Labelled: stored feature vectors and kernel matrix")
         return
     def loss(self,pred,target):
-        pred = pred.view(-1,self.z_height*self.z_width)
-        target = target.view(-1,self.z_height*self.z_width)
+        # pred = pred.view(-1,self.z_height*self.z_width)
+        # target = target.view(-1,self.z_height*self.z_width)
         diff = pred - target
         loss = diff**2#torch.matmul(self.metric_m,diff))
-        return loss
+        return loss.mean(dim=-1).mean(dim=-1)
     def compute_gploss(self,zy_in,imgid,batch_id,reject_trsh=False,label_flg=0):
         tensor_mat = zy_in
         
