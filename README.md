@@ -24,7 +24,7 @@ Semi-Supervised Image Deraining using Gaussian Processes
 ## Prerequisites:
 1. Linux
 2. Python 2 or 3
-3. Pytorch version >=1.0
+3. Pytorch version >=1.9
 4. CPU or NVIDIA GPU + CUDA CuDNN (CUDA 8.0)
 
 ## Dataset structure
