@@ -44,19 +44,19 @@ def kernel_distance(X_u,X_l):
     xl_shape = X_l.shape
     # pdb.set_trace()
     if len(xu_shape)==2 :
-        x_l_t = X_l.repeat(xu_shape[0],1)
+        x_l_t = X_l.repeat(1,xu_shape[0]).view(xl_shape[0]*xu_shape[0],xl_shape[1])
         x_u_t = X_u.repeat(xl_shape[0],1)
         ker_t = pdist_ker(x_u_t,x_l_t)
         ker_t = ker_t.view(xu_shape[0],xl_shape[0])
     elif len(xu_shape)==3 :
-        x_l_t = X_l.repeat(1,xu_shape[1],1)
+        x_l_t = X_l.repeat(1,1,xu_shape[1]).view(xl_shape[0],xl_shape[1]*xu_shape[1],xl_shape[2])
         x_u_t = X_u.repeat(1,xl_shape[1],1)
         ker_t = pdist_ker(x_u_t,x_l_t)
         ker_t = ker_t.view(xu_shape[0],xu_shape[1],xl_shape[1])
     elif len(xu_shape)==4 :
         X_u = X_u.reshape(xu_shape[0]*xu_shape[1],xu_shape[2],xu_shape[3])
         X_l = X_l.reshape(xl_shape[0]*xl_shape[1],xl_shape[2],xl_shape[3])
-        x_l_t = X_l.repeat(1,xu_shape[2],1)
+        x_l_t = X_l.repeat(1,1,xu_shape[2]).view(xl_shape[0]*xl_shape[1],xl_shape[2]*xu_shape[2],xl_shape[3])
         x_u_t = X_u.repeat(1,xl_shape[2],1)
         ker_t = pdist_ker(x_u_t,x_l_t)
         ker_t = ker_t.view(xu_shape[0],xu_shape[1],xu_shape[2],xl_shape[2])
